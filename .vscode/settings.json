@@ -1,0 +1,5 @@
+{
+  "code-runner.executorMapByGlob": {
+    "*.py": "conda activate wordy && python -u"
+  }
+}

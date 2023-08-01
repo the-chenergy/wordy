@@ -1,0 +1,7 @@
+name: wordy
+channels:
+  - defaults
+dependencies:
+  - python
+  - yapf
+  - prompt_toolkit

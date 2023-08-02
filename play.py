@@ -92,7 +92,9 @@ def main() -> None:
             '--completion',
             type=bool,
             action=argparse.BooleanOptionalAction,
-            help='enable tab completion, activated by the tab key')
+            help=
+            'enable tab completion of possible words, activated by entering a regex and pressing tab key'
+        )
 
         return parser.parse_args(sys.argv[1:])
 
@@ -155,11 +157,17 @@ def main() -> None:
             self, document: prompt_toolkit.document.Document,
             complete_event: prompt_toolkit.completion.CompleteEvent
         ) -> typing.Iterable[prompt_toolkit.completion.Completion]:
-            entered_text = document.current_line.replace('_', '.').lower()
+            entered_text = document.current_line.strip()
+            entered_text = entered_text.replace('_', '.').lower()
             for word in self.words:
-                if re.match(entered_text, word) is not None:
-                    yield prompt_toolkit.completion.Completion(
-                        word, -len(entered_text))
+                if not possible(word): continue
+                try:
+                    if re.match(f'^{entered_text}$', word) is None: continue
+                except re.error:
+                    return
+
+                yield prompt_toolkit.completion.Completion(
+                    word, -len(entered_text))
 
     tab_completer = WordCompleter(sorted(allowed_targets))
 

@@ -155,7 +155,7 @@ def main() -> None:
             self, document: prompt_toolkit.document.Document,
             complete_event: prompt_toolkit.completion.CompleteEvent
         ) -> typing.Iterable[prompt_toolkit.completion.Completion]:
-            entered_text = document.current_line.lower()
+            entered_text = document.current_line.replace('_', '.').lower()
             for word in self.words:
                 if re.match(entered_text, word) is not None:
                     yield prompt_toolkit.completion.Completion(

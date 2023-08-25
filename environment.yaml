@@ -1,7 +1,18 @@
 name: wordy
+
 channels:
   - defaults
+
 dependencies:
-  - python
+  - python=3.11
+  - ipykernel
   - yapf
   - prompt_toolkit
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+
+  - pip
+  - pip:
+      - frozendict

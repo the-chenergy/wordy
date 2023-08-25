@@ -1,5 +1,10 @@
 {
   "code-runner.executorMapByGlob": {
     "*.py": "conda activate wordy && python -u"
-  }
+  },
+  "cSpell.words": [
+    "frozendict",
+    "scipy",
+    "unigram"
+  ]
 }
